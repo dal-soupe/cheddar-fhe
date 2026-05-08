@@ -3,6 +3,7 @@
 #include <chrono>
 
 #include "Testbed.h"
+#include "extension/EncryptedMatrix.h"
 
 static constexpr int warm_up = 5;
 using word = uint32_t;
@@ -415,6 +416,57 @@ TEST_P(Testbed32, HConj) {
     std::vector<Complex> res;
     DecryptAndDecode(res, ct_res);
     CompareMessages(true_res, res, level == param_->max_level_);
+  }
+}
+
+TEST_P(Testbed32, EncryptedSquareMatrixHMult) {
+  constexpr int dimension = 2;
+  const int level = param_->max_level_;
+
+  auto make_scalar_message = [](double value) {
+    return std::vector<Complex>{Complex(value, 0.0)};
+  };
+
+  std::vector<std::vector<double>> lhs_plain{
+      {1.0, 2.0},
+      {3.0, 4.0},
+  };
+  std::vector<std::vector<double>> rhs_plain{
+      {5.0, 6.0},
+      {7.0, 8.0},
+  };
+  std::vector<std::vector<double>> expected{
+      {19.0, 22.0},
+      {43.0, 50.0},
+  };
+
+  CiphertextMatrix<word> lhs_ct(dimension);
+  CiphertextMatrix<word> rhs_ct(dimension);
+  for (int row = 0; row < dimension; ++row) {
+    lhs_ct[row].resize(dimension);
+    rhs_ct[row].resize(dimension);
+    for (int col = 0; col < dimension; ++col) {
+      EncodeAndEncrypt(lhs_ct[row][col], make_scalar_message(lhs_plain[row][col]),
+                       level);
+      EncodeAndEncrypt(rhs_ct[row][col], make_scalar_message(rhs_plain[row][col]),
+                       level);
+    }
+  }
+
+  auto res_ct = HMultSquareMatrices(context_, lhs_ct, rhs_ct,
+                                    interface_->GetMultiplicationKey(), true);
+
+  ASSERT_EQ(static_cast<int>(res_ct.size()), dimension);
+  for (int row = 0; row < dimension; ++row) {
+    ASSERT_EQ(static_cast<int>(res_ct[row].size()), dimension);
+    for (int col = 0; col < dimension; ++col) {
+      EXPECT_EQ(param_->NPToLevel(res_ct[row][col].GetNP()), level - 1);
+      std::vector<Complex> decoded;
+      DecryptAndDecode(decoded, res_ct[row][col]);
+      ASSERT_FALSE(decoded.empty());
+      EXPECT_NEAR(decoded[0].real(), expected[row][col], max_error_);
+      EXPECT_NEAR(decoded[0].imag(), 0.0, max_error_);
+    }
   }
 }
 
