@@ -133,6 +133,17 @@ void HMultSquareMatrices(ConstContextPtr<word> context,
   res = std::move(tmp_res);
 }
 
+template <typename word>
+void HMultSquareMatrices(ContextPtr<word> context,
+                         CiphertextMatrix<word> &res,
+                         const CiphertextMatrix<word> &lhs,
+                         const CiphertextMatrix<word> &rhs,
+                         const EvaluationKey<word> &mult_key,
+                         bool rescale = true) {
+  HMultSquareMatrices(ConstContextPtr<word>(context), res, lhs, rhs, mult_key,
+                      rescale);
+}
+
 /**
  * @brief Convenience overload returning the encrypted result matrix.
  *
@@ -152,6 +163,15 @@ CiphertextMatrix<word> HMultSquareMatrices(
   CiphertextMatrix<word> res;
   HMultSquareMatrices(context, res, lhs, rhs, mult_key, rescale);
   return res;
+}
+
+template <typename word>
+CiphertextMatrix<word> HMultSquareMatrices(
+    ContextPtr<word> context, const CiphertextMatrix<word> &lhs,
+    const CiphertextMatrix<word> &rhs,
+    const EvaluationKey<word> &mult_key, bool rescale = true) {
+  return HMultSquareMatrices(ConstContextPtr<word>(context), lhs, rhs,
+                             mult_key, rescale);
 }
 
 }  // namespace cheddar

@@ -442,19 +442,28 @@ TEST_P(Testbed32, EncryptedSquareMatrixHMult) {
 
   CiphertextMatrix<word> lhs_ct(dimension);
   CiphertextMatrix<word> rhs_ct(dimension);
-  for (int row = 0; row < dimension; ++row) {
-    lhs_ct[row].resize(dimension);
-    rhs_ct[row].resize(dimension);
-    for (int col = 0; col < dimension; ++col) {
-      EncodeAndEncrypt(lhs_ct[row][col], make_scalar_message(lhs_plain[row][col]),
-                       level);
-      EncodeAndEncrypt(rhs_ct[row][col], make_scalar_message(rhs_plain[row][col]),
-                       level);
+  auto prepare_cts = [&]() {
+    for (int row = 0; row < dimension; ++row) {
+      lhs_ct[row].resize(dimension);
+      rhs_ct[row].resize(dimension);
+      for (int col = 0; col < dimension; ++col) {
+        EncodeAndEncrypt(lhs_ct[row][col],
+                         make_scalar_message(lhs_plain[row][col]), level);
+        EncodeAndEncrypt(rhs_ct[row][col],
+                         make_scalar_message(rhs_plain[row][col]), level);
+      }
     }
-  }
+  };
 
-  auto res_ct = HMultSquareMatrices(context_, lhs_ct, rhs_ct,
-                                    interface_->GetMultiplicationKey(), true);
+  CiphertextMatrix<word> res_ct;
+  std::string name = "EncryptedSquareMatrixHMult (" +
+                     std::to_string(dimension) + "x" +
+                     std::to_string(dimension) + ") at level " +
+                     std::to_string(level);
+  __ProfileStart(name, warm_up, prepare_cts());
+  res_ct = HMultSquareMatrices(context_, lhs_ct, rhs_ct,
+                               interface_->GetMultiplicationKey(), true);
+  __ProfileEnd(name);
 
   ASSERT_EQ(static_cast<int>(res_ct.size()), dimension);
   for (int row = 0; row < dimension; ++row) {
