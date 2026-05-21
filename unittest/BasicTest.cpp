@@ -4,6 +4,7 @@
 
 #include "Testbed.h"
 #include "extension/EncryptedMatrix.h"
+#include "extension/PackedCiphertextMatrix.h"
 
 static constexpr int warm_up = 5;
 using word = uint32_t;
@@ -475,6 +476,74 @@ TEST_P(Testbed32, EncryptedSquareMatrixHMult) {
       ASSERT_FALSE(decoded.empty());
       EXPECT_NEAR(decoded[0].real(), expected[row][col], max_error_);
       EXPECT_NEAR(decoded[0].imag(), 0.0, max_error_);
+    }
+  }
+}
+
+TEST_P(Testbed32, PackedCiphertextSquareMatrixHMult) {
+  constexpr int dimension = 4;
+  const int level = param_->max_level_;
+
+  PackedCiphertextMatrixMultiplier<word> packed_multiplier(context_, dimension,
+                                                           level);
+  EvkRequest rot_req;
+  packed_multiplier.AddRequiredRotations(rot_req);
+  interface_->PrepareRotationKey(rot_req);
+
+  std::vector<std::vector<double>> lhs_plain{
+      {1.0, 2.0, 3.0, 4.0},
+      {5.0, 6.0, 7.0, 8.0},
+      {9.0, 10.0, 11.0, 12.0},
+      {13.0, 14.0, 15.0, 16.0},
+  };
+  std::vector<std::vector<double>> rhs_plain{
+      {17.0, 18.0, 19.0, 20.0},
+      {21.0, 22.0, 23.0, 24.0},
+      {25.0, 26.0, 27.0, 28.0},
+      {29.0, 30.0, 31.0, 32.0},
+  };
+
+  std::vector<std::vector<double>> expected(
+      dimension, std::vector<double>(dimension, 0.0));
+  for (int row = 0; row < dimension; ++row) {
+    for (int col = 0; col < dimension; ++col) {
+      for (int k = 0; k < dimension; ++k) {
+        expected.at(row).at(col) +=
+            lhs_plain.at(row).at(k) * rhs_plain.at(k).at(col);
+      }
+    }
+  }
+
+  std::vector<Complex> lhs_msg = packed_multiplier.Flatten(lhs_plain);
+  std::vector<Complex> rhs_msg = packed_multiplier.Flatten(rhs_plain);
+
+  Ciphertext<word> lhs_ct, rhs_ct, res_ct;
+  auto prepare_cts = [&]() {
+    EncodeAndEncrypt(lhs_ct, lhs_msg, level);
+    EncodeAndEncrypt(rhs_ct, rhs_msg, level);
+  };
+
+  std::string name = "PackedCiphertextSquareMatrixHMult (" +
+                     std::to_string(dimension) + "x" +
+                     std::to_string(dimension) + ") at level " +
+                     std::to_string(level);
+  __ProfileStart(name, warm_up, prepare_cts());
+  packed_multiplier.Multiply(context_, res_ct, lhs_ct, rhs_ct,
+                             interface_->GetEvkMap(),
+                             interface_->GetMultiplicationKey(), true);
+  __ProfileEnd(name);
+
+  EXPECT_EQ(param_->NPToLevel(res_ct.GetNP()), level - 1);
+
+  std::vector<Complex> decoded_flat;
+  DecryptAndDecode(decoded_flat, res_ct);
+  auto decoded = packed_multiplier.Reshape(decoded_flat);
+
+  for (int row = 0; row < dimension; ++row) {
+    for (int col = 0; col < dimension; ++col) {
+      EXPECT_NEAR(decoded.at(row).at(col).real(), expected.at(row).at(col),
+                  max_error_);
+      EXPECT_NEAR(decoded.at(row).at(col).imag(), 0.0, max_error_);
     }
   }
 }
