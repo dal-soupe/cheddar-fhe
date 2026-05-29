@@ -1,3 +1,15 @@
+/**
+ * @file Encode.cpp
+ * @brief CKKS encoder and decoder implementation.
+ *
+ * Contents: special FFT/IFFT, complex-vector to plaintext conversion, inverse
+ * CRT reconstruction, scalar constant encoding, and twiddle-factor access.
+ * Main usage: convert between user complex messages and RNS/NTT plaintext
+ * polynomials at a requested CKKS level and scale.
+ * Depends on: core/Encode.h, common/Assert.h, common/CommonUtils.h,
+ * common/PrimeUtils.h, and core/BigInt.h.
+ */
+
 #include "core/Encode.h"
 
 #include "common/Assert.h"

@@ -1,5 +1,16 @@
 #pragma once
 
+/**
+ * @file DeviceVector.h
+ * @brief Host and GPU vector wrappers used by Cheddar FHE containers.
+ *
+ * Contents: HostVector, DeviceVector, mutable/const device views, and async
+ * copy helpers.
+ * Main usage: allocate, resize, view, and transfer RNS polynomial buffers on
+ * the GPU.
+ * Depends on: thrust::host_vector, RMM device_uvector, CUDA streams.
+ */
+
 #include <thrust/host_vector.h>
 
 #include <iostream>

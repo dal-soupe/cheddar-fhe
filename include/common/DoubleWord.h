@@ -1,5 +1,16 @@
 #pragma once
 
+/**
+ * @file DoubleWord.h
+ * @brief Type traits for widening integral words.
+ *
+ * Contents: mappings from signed/unsigned integer word types to double-width
+ * types, including 64-bit to 128-bit support.
+ * Main usage: select safe accumulator types for modular multiplication and
+ * Montgomery reduction.
+ * Depends on: core/Type.h and C++ integer/type-trait headers.
+ */
+
 #include <cstdint>
 #include <type_traits>
 

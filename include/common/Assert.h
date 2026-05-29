@@ -1,5 +1,15 @@
 #pragma once
 
+/**
+ * @file Assert.h
+ * @brief Assertion and warning helpers used across Cheddar FHE.
+ *
+ * Contents: fatal checks, warning checks, and NPInfo compatibility assertions.
+ * Main usage: validate runtime invariants and report recoverable warnings from
+ * host-side library code.
+ * Depends on: C++ iostream/string utilities.
+ */
+
 #include <iostream>
 #include <string>
 

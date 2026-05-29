@@ -1,3 +1,16 @@
+/**
+ * @file ModSwitch.cu
+ * @brief CUDA modulus-switching and base-conversion implementation.
+ *
+ * Contents: base-conversion matrix multiplication kernels, mod-up constants,
+ * mod-down epilogue constants, pseudo-mod-up, mod-up, mod-down, rescale, and
+ * fused mod-down/rescale flows.
+ * Main usage: move ciphertext limbs between Q, P, and reduced bases for key
+ * switching, multiplication, rescaling, and bootstrapping.
+ * Depends on: core/ModSwitch.h, common CUDA arithmetic utilities,
+ * ConstantMemory, PrimeUtils, ElementWise, and NTT handlers.
+ */
+
 #include <algorithm>
 
 #include "common/Assert.h"

@@ -1,5 +1,15 @@
 #pragma once
 
+/**
+ * @file ConstantMemory.cuh
+ * @brief CUDA constant-memory bindings for global scheme parameters.
+ *
+ * Contents: device constants for degree, log-degree, alpha, and L plus a helper
+ * to populate them from Parameter.
+ * Main usage: provide fast shared parameter access inside CUDA kernels.
+ * Depends on: core/Parameter.h and cudaMemcpyToSymbol.
+ */
+
 #include <cstdint>
 #include <vector>
 

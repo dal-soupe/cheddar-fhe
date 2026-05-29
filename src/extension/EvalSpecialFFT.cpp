@@ -1,3 +1,16 @@
+/**
+ * @file EvalSpecialFFT.cpp
+ * @brief Encrypted special-FFT transforms for bootstrapping.
+ *
+ * Contents: diagonal FFT/IFFT matrix construction, BSGS splitting, plaintext
+ * preparation for CtS/StC phases, required rotations, and encrypted CtS/StC
+ * evaluation.
+ * Main usage: implement coefficient-to-slot and slot-to-coefficient linear
+ * transforms inside CKKS bootstrapping.
+ * Depends on: extension/EvalSpecialFFT.h, common/Assert.h,
+ * common/CommonUtils.h, StripedMatrix, LinearTransform, and C++ math.
+ */
+
 #include "extension/EvalSpecialFFT.h"
 
 #include <cmath>

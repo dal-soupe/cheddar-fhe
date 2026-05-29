@@ -1,3 +1,14 @@
+/**
+ * @file EvkRequest.cpp
+ * @brief Rotation-key request aggregation implementation.
+ *
+ * Contents: validation and insertion logic for requested rotation indices and
+ * their required levels.
+ * Main usage: collect the evaluation keys needed before running rotations,
+ * bootstrapping, or linear transforms.
+ * Depends on: core/EvkRequest.h and common/Assert.h.
+ */
+
 #include "core/EvkRequest.h"
 
 #include "common/Assert.h"

@@ -1,3 +1,14 @@
+/**
+ * @file StripedMatrix.cpp
+ * @brief Sparse diagonal/striped complex matrix operations.
+ *
+ * Contents: dimension metadata, diagonal counts, striped matrix multiplication,
+ * and scalar multiplication.
+ * Main usage: build compact diagonal representations of FFT/IFFT and other
+ * linear transforms before encoding them as plaintext masks.
+ * Depends on: extension/StripedMatrix.h and common/Assert.h.
+ */
+
 #include "extension/StripedMatrix.h"
 
 #include "common/Assert.h"

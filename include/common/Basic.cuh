@@ -1,5 +1,16 @@
 #pragma once
 
+/**
+ * @file Basic.cuh
+ * @brief CUDA arithmetic primitives for RNS modular kernels.
+ *
+ * Contents: wide multiply, Montgomery reduction, modular add/sub/negate,
+ * bit-reversal, streaming loads, and vectorized device moves.
+ * Main usage: shared low-level building blocks for NTT, element-wise, mod
+ * switch, hoist, and encryption CUDA kernels.
+ * Depends on: common/DoubleWord.h and core/Type.h.
+ */
+
 #include "common/DoubleWord.h"
 #include "core/Type.h"
 

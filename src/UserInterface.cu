@@ -1,3 +1,16 @@
+/**
+ * @file UserInterface.cu
+ * @brief Testing-oriented key generation, encryption, and convenience API.
+ *
+ * Contents: encryption kernels, secret/error/random polynomial sampling,
+ * encode/decode wrappers, encrypt/decrypt, evaluation-key generation, and key
+ * lookup helpers.
+ * Main usage: provide an easy test harness around Context operations; it is
+ * explicitly not intended for production cryptographic use.
+ * Depends on: UserInterface.h, common CUDA arithmetic utilities,
+ * ConstantMemory, PrimeUtils, PtrList, and Random.
+ */
+
 #include "UserInterface.h"
 #include "common/Basic.cuh"
 #include "common/CommonUtils.h"

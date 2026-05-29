@@ -1,5 +1,17 @@
 #pragma once
 
+/**
+ * @file PackedCiphertextMatrix.h
+ * @brief Inline helpers for row-major packed encrypted matrix multiplication.
+ *
+ * Contents: row-major flatten/reshape helpers, rotation-mask construction, and
+ * PackedCiphertextMatrixMultiplier.
+ * Main usage: multiply power-of-two square matrices packed into CKKS slots with
+ * diagonalization, rotations, plaintext masks, and ciphertext products.
+ * Depends on: common/Assert.h, common/CommonUtils.h, core/Context.h,
+ * core/EvkMap.h, and core/EvkRequest.h.
+ */
+
 #include <map>
 #include <string>
 #include <utility>

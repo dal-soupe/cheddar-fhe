@@ -1,3 +1,16 @@
+/**
+ * @file LinearTransform.cpp
+ * @brief BSGS linear-transform wrapper over hoisted rotations.
+ *
+ * Contents: stride selection, striped-matrix to PlainHoistMap conversion,
+ * transform construction, BSGS metadata accessors, rotation requests, and
+ * evaluation forwarding.
+ * Main usage: represent diagonal/striped linear maps as hoisted plaintext
+ * rotations for encrypted FFT and other slot transforms.
+ * Depends on: extension/LinearTransform.h, common/Assert.h, and
+ * common/CommonUtils.h.
+ */
+
 #include "extension/LinearTransform.h"
 
 #include "common/Assert.h"

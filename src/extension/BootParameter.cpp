@@ -1,3 +1,14 @@
+/**
+ * @file BootParameter.cpp
+ * @brief Bootstrapping level schedule and EvalMod constants.
+ *
+ * Contents: default EvalMod polynomial coefficients, double-angle parameters,
+ * and helper accessors for CtS, EvalMod, StC, start, and end levels.
+ * Main usage: configure BootContext and bootstrapping subcomponents with a
+ * consistent level budget.
+ * Depends on: extension/BootParameter.h and common/CommonUtils.h.
+ */
+
 #include "extension/BootParameter.h"
 
 #include "common/CommonUtils.h"

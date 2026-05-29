@@ -1,3 +1,16 @@
+/**
+ * @file Hoist.cu
+ * @brief Hoisted rotation and linear-transform evaluation kernels.
+ *
+ * Contents: fused baby-step key multiplication, fused giant-step plaintext
+ * accumulation, plaintext compilation, BSGS/min-key-switch evaluation paths,
+ * final mod-down, and required-rotation collection.
+ * Main usage: accelerate many-rotation linear transforms by sharing mod-up and
+ * key-switch work across baby and giant steps.
+ * Depends on: extension/Hoist.h, common/Basic.cuh, common/CommonUtils.h, and
+ * common/ConstantMemory.cuh.
+ */
+
 #include "common/Basic.cuh"
 #include "common/CommonUtils.h"
 #include "common/ConstantMemory.cuh"

@@ -1,3 +1,16 @@
+/**
+ * @file ElementWise.cu
+ * @brief CUDA kernels and launch wrappers for element-wise RNS operations.
+ *
+ * Contents: modular add/sub/neg/multiply, constant/plaintext accumulation,
+ * automorphism permutation, tensor products, special mod-up, and imaginary-unit
+ * multiplication kernels.
+ * Main usage: perform pointwise GPU arithmetic on ciphertext, plaintext,
+ * constant, and evaluation-key polynomial buffers.
+ * Depends on: common CUDA arithmetic utilities, PtrList, ConstantMemory,
+ * PrimeUtils, and core/ElementWise.h.
+ */
+
 #include "common/Assert.h"
 #include "common/Basic.cuh"
 #include "common/CommonUtils.h"

@@ -1,5 +1,16 @@
 #pragma once
 
+/**
+ * @file PtrList.h
+ * @brief Lightweight pointer bundles passed to CUDA kernels.
+ *
+ * Contents: input/output pointer-list structs for polynomial vectors,
+ * rotations, and constant/plaintext accumulation kernels.
+ * Main usage: package DeviceVector views so templated kernels can process one
+ * or more ciphertext/plaintext polynomials uniformly.
+ * Depends on: core/DeviceVector.h and std::vector.
+ */
+
 #include <vector>
 
 #include "core/DeviceVector.h"

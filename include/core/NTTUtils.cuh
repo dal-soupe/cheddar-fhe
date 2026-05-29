@@ -1,5 +1,16 @@
 #pragma once
 
+/**
+ * @file NTTUtils.cuh
+ * @brief Device-side butterfly and launch-configuration utilities for NTTs.
+ *
+ * Contents: forward/inverse butterfly kernels, multi-radix stage helpers,
+ * optional twiddle compression helpers, and compile-time NTT launch settings.
+ * Main usage: reused by NTT.cu to build high-throughput forward and inverse
+ * transforms over each RNS limb.
+ * Depends on: common/Basic.cuh and core/NTT.h.
+ */
+
 #include "common/Basic.cuh"
 #include "core/NTT.h"
 

@@ -1,5 +1,16 @@
 #pragma once
 
+/**
+ * @file PrimeUtils.h
+ * @brief Host-side finite-field and prime-modulus helper routines.
+ *
+ * Contents: modular multiply/inverse/power, primitive-root discovery,
+ * Montgomery constants, and Montgomery-form conversion.
+ * Main usage: prepare NTT-friendly primes, twiddle factors, CRT constants, and
+ * GPU modular arithmetic constants.
+ * Depends on: common/DoubleWord.h, core/Type.h, and C++ math/vector utilities.
+ */
+
 #include <cmath>
 #include <iostream>
 #include <vector>

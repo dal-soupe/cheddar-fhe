@@ -1,3 +1,14 @@
+/**
+ * @file EvkMap.cpp
+ * @brief Lookup helpers for evaluation-key maps.
+ *
+ * Contents: checked accessors for rotation, multiplication, conjugation,
+ * dense-to-sparse, and sparse-to-dense evaluation keys.
+ * Main usage: centralize key-index conventions and validation before
+ * homomorphic key switching operations.
+ * Depends on: core/EvkMap.h and common/Assert.h.
+ */
+
 #include "core/EvkMap.h"
 
 #include "common/Assert.h"

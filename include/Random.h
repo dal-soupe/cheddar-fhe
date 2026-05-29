@@ -1,5 +1,16 @@
 #pragma once
 
+/**
+ * @file Random.h
+ * @brief Non-cryptographic random sampling utilities for tests.
+ *
+ * Contents: uniform word/real/complex sampling, sampling without replacement,
+ * and clipped discrete-normal sampling.
+ * Main usage: generate test messages, secrets, errors, and random polynomial
+ * coefficients in the local test interface.
+ * Depends on: core/Type.h and C++ random/algorithm utilities.
+ */
+
 #include <algorithm>
 #include <cmath>
 #include <iostream>

@@ -1,5 +1,9 @@
 #pragma once
 
+/**
+ * brings aliases in the cheddar namespace: int128_t, uint128_t and Complex
+ */
+
 #include <complex>
 #include <cstdint>
 #include <type_traits>

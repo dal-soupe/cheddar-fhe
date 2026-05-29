@@ -1,3 +1,15 @@
+/**
+ * @file BootContext.cpp
+ * @brief Bootstrapping-aware context implementation.
+ *
+ * Contents: bootstrapping scale constants, EvalMod and special-FFT preparation,
+ * required-rotation collection, mod-up-to-max, slot-count handling, and full
+ * bootstrap orchestration.
+ * Main usage: extend Context with CKKS bootstrapping setup and execution.
+ * Depends on: extension/BootContext.h, common/Assert.h, common/CommonUtils.h,
+ * common/PrimeUtils.h, and C++ math utilities.
+ */
+
 #include "extension/BootContext.h"
 
 #include <cmath>

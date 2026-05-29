@@ -1,3 +1,16 @@
+/**
+ * @file BasicTest.cpp
+ * @brief GoogleTest coverage for core CKKS operations.
+ *
+ * Contents: encode/decode, encrypt/decrypt, arithmetic, rotation,
+ * conjugation, multiplication/relinearization/rescale, and encrypted matrix
+ * multiplication tests with lightweight profiling.
+ * Main usage: validate the basic 32-bit Cheddar FHE execution path against
+ * plaintext expected results.
+ * Depends on: Testbed.h, extension/EncryptedMatrix.h,
+ * extension/PackedCiphertextMatrix.h, and GoogleTest.
+ */
+
 #undef ENABLE_EXTENSION
 
 #include <chrono>

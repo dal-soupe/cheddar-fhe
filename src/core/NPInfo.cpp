@@ -1,3 +1,14 @@
+/**
+ * @file NPInfo.cpp
+ * @brief Runtime metadata for active RNS prime counts.
+ *
+ * Contents: constructors, assignment/comparison operators, total-Q/total-prime
+ * counts, and subset/superset checks.
+ * Main usage: describe which main, terminal, and auxiliary primes are present
+ * in a container or operation.
+ * Depends on: core/NPInfo.h and common/Assert.h.
+ */
+
 #include "core/NPInfo.h"
 
 #include "common/Assert.h"

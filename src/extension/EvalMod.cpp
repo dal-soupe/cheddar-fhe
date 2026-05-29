@@ -1,3 +1,14 @@
+/**
+ * @file EvalMod.cpp
+ * @brief Approximate modular-reduction stage for CKKS bootstrapping.
+ *
+ * Contents: EvalMod polynomial setup, initial scaling constant, double-angle
+ * corrections, evaluation, and metadata accessors.
+ * Main usage: evaluate the bootstrapping mod-1 approximation between
+ * coefficient-to-slot and slot-to-coefficient transforms.
+ * Depends on: extension/EvalMod.h, common/Assert.h, and common/CommonUtils.h.
+ */
+
 #include "extension/EvalMod.h"
 
 #include "common/Assert.h"

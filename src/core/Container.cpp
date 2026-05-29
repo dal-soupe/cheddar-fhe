@@ -1,3 +1,15 @@
+/**
+ * @file Container.cpp
+ * @brief Implementations for RNS data container classes.
+ *
+ * Contents: metadata handling, buffer resizing, slot/scale accessors, and
+ * DeviceVector view creation for constants, plaintexts, ciphertexts, and
+ * evaluation keys.
+ * Main usage: own and expose GPU-backed polynomial storage used by all CKKS
+ * operations.
+ * Depends on: core/Container.h, common/Assert.h, and common/CommonUtils.h.
+ */
+
 #include "core/Container.h"
 
 #include "common/Assert.h"

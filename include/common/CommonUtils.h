@@ -1,5 +1,16 @@
 #pragma once
 
+/**
+ * @file CommonUtils.h
+ * @brief Host-side integer and vector utility routines.
+ *
+ * Contents: log/division rounding helpers, bit-reversal utilities, power-of-two
+ * checks, min/max/abs, and GCD helpers.
+ * Main usage: compute CKKS dimensions, rotation layouts, decomposition sizes,
+ * and FFT/NTT indexing on the host.
+ * Depends on: common/Assert.h and C++ type/vector utilities.
+ */
+
 #include <type_traits>
 #include <utility>
 #include <vector>

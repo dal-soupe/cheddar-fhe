@@ -1,3 +1,14 @@
+/**
+ * @file MemoryPool.cpp
+ * @brief RMM memory-resource setup tuned for Cheddar FHE allocations.
+ *
+ * Contents: binning-memory-resource construction based on polynomial degree,
+ * word size, alpha, and level count, plus restoration on destruction.
+ * Main usage: reduce GPU allocation overhead and fragmentation during regular
+ * CKKS and bootstrapping workloads.
+ * Depends on: core/MemoryPool.h and RMM memory resources.
+ */
+
 #include "core/MemoryPool.h"
 
 namespace cheddar {

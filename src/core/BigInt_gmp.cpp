@@ -1,3 +1,14 @@
+/**
+ * @file BigInt_gmp.cpp
+ * @brief GMP-backed implementation of the BigInt wrapper.
+ *
+ * Contents: construction, lifetime management, conversion, arithmetic, division
+ * by two, modular reduction, and centered modular normalization.
+ * Main usage: provide high-precision integer arithmetic for CKKS
+ * encode/decode paths when USE_GMP is enabled.
+ * Depends on: common/Assert.h, core/BigInt.h, and GMP.
+ */
+
 #include "common/Assert.h"
 #include "core/BigInt.h"
 

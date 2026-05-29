@@ -1,3 +1,16 @@
+/**
+ * @file Parameter.cu
+ * @brief CKKS parameter validation, derived metadata, and GPU prime tables.
+ *
+ * Contents: constructor validation, level-to-prime-count mapping, Galois
+ * factors, scales, rescale constants, prime-vector accessors, sparse-secret
+ * settings, and CUDA allocation cleanup.
+ * Main usage: provide immutable scheme parameters and precomputed prime data to
+ * all context, NTT, element-wise, and modulus-switching code.
+ * Depends on: core/Parameter.h, common/Assert.h, common/CommonUtils.h, and
+ * common/PrimeUtils.h.
+ */
+
 #include <algorithm>
 #include <numeric>
 

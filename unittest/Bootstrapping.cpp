@@ -1,3 +1,16 @@
+/**
+ * @file Bootstrapping.cpp
+ * @brief GoogleTest coverage for CKKS bootstrapping.
+ *
+ * Contents: parameterized 32-bit and 64-bit bootstrap tests, EvalMod/special
+ * FFT preparation, required-key generation, basic bootstrap, and min-KS
+ * bootstrap validation.
+ * Main usage: verify bootstrapping parameter files preserve encrypted messages
+ * after refresh.
+ * Depends on: Testbed.h, extension bootstrapping support, parameter JSON files,
+ * and GoogleTest.
+ */
+
 #include "Testbed.h"
 
 static constexpr int num_slots = 1 << 15;

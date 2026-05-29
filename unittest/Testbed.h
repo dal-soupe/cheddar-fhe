@@ -1,5 +1,18 @@
 #pragma once
 
+/**
+ * @file Testbed.h
+ * @brief Shared GoogleTest fixture and helpers for Cheddar FHE tests.
+ *
+ * Contents: JSON parameter loading, Context/UserInterface setup, profiling
+ * macros, random message generation, encode/encrypt/decrypt wrappers, key
+ * preparation, and numerical comparison helpers.
+ * Main usage: provide reusable test infrastructure for basic and bootstrapping
+ * test suites.
+ * Depends on: UserInterface.h, optional extension/BootContext.h, GoogleTest,
+ * nlohmann/json, CUDA synchronization, and C++ I/O/math utilities.
+ */
+
 #include <gtest/gtest.h>
 
 #include <nlohmann/json.hpp>

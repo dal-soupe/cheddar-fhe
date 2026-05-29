@@ -1,5 +1,16 @@
 #pragma once
 
+/**
+ * @file EncryptedMatrix.h
+ * @brief Inline helpers for textbook encrypted square-matrix multiplication.
+ *
+ * Contents: CiphertextMatrix alias, matrix validation, and O(n^3)
+ * ciphertext-matrix multiplication routines.
+ * Main usage: test or prototype matrix products where each matrix entry is a
+ * separate CKKS ciphertext.
+ * Depends on: common/Assert.h and core/Context.h.
+ */
+
 #include <string>
 #include <utility>
 #include <vector>

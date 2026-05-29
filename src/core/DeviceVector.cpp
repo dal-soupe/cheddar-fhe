@@ -1,3 +1,13 @@
+/**
+ * @file DeviceVector.cpp
+ * @brief Implementations for GPU vector views and transfer helpers.
+ *
+ * Contents: DvView/DvConstView metadata accessors, DeviceVector resize and
+ * zero-extension, and host/device/device copy routines.
+ * Main usage: manage CUDA/RMM buffers and typed views for polynomial data.
+ * Depends on: core/DeviceVector.h, common/Assert.h, and CUDA memcpy/memset.
+ */
+
 #include "core/DeviceVector.h"
 
 #include <cstdint>

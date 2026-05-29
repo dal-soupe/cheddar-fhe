@@ -1,3 +1,15 @@
+/**
+ * @file EvalPoly.cpp
+ * @brief Polynomial-evaluation compiler and executor for ciphertexts.
+ *
+ * Contents: polynomial basis conversion, basis-map construction, AXYPBZ fused
+ * multiply-add nodes, recursive evaluation trees, plain evaluation, and
+ * encrypted EvalPoly execution.
+ * Main usage: compile and evaluate normal or Chebyshev polynomials during
+ * EvalMod and other nonlinear encrypted computations.
+ * Depends on: extension/EvalPoly.h, common/Assert.h, and common/CommonUtils.h.
+ */
+
 #include "extension/EvalPoly.h"
 
 #include "common/Assert.h"

@@ -1,3 +1,16 @@
+/**
+ * @file Context.cpp
+ * @brief High-level CKKS homomorphic operation implementation.
+ *
+ * Contents: context construction, ciphertext copy/add/sub/neg/multiply,
+ * rotations, conjugation, key switching, relinearization, rescaling, unsafe
+ * level-aware products, and multi-level accumulation helpers.
+ * Main usage: central execution engine that coordinates ElementWiseHandler,
+ * NTTHandler, ModSwitchHandler, Encoder, memory pool, and parameter metadata.
+ * Depends on: core/Context.h, common/Assert.h, common/CommonUtils.h, and
+ * common/PrimeUtils.h.
+ */
+
 #include "core/Context.h"
 
 #include "common/Assert.h"

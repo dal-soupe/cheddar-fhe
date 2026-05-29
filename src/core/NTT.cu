@@ -1,3 +1,16 @@
+/**
+ * @file NTT.cu
+ * @brief CUDA NTT/INTT kernels and launch orchestration.
+ *
+ * Contents: two-phase forward and inverse NTT kernels, mod-up/mod-down NTT
+ * variants, launch-configuration helpers, twiddle-factor generation, and
+ * imaginary-unit constants.
+ * Main usage: transform RNS polynomial limbs between coefficient and NTT
+ * domains for encoding, arithmetic, key switching, and modulus switching.
+ * Depends on: core/NTT.h, core/NTTUtils.cuh, PtrList, ConstantMemory,
+ * common CUDA arithmetic utilities, and PrimeUtils.
+ */
+
 #include "common/Assert.h"
 #include "common/Basic.cuh"
 #include "common/CommonUtils.h"

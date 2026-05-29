@@ -1,3 +1,14 @@
+/**
+ * @file MultiLevelCiphertext.cpp
+ * @brief Storage helpers for ciphertexts materialized at multiple levels.
+ *
+ * Contents: static level-down constants, move construction from ciphertexts,
+ * level allocation/access, min/max level queries, existence checks, and clear.
+ * Main usage: accumulate or evaluate algorithms that keep related ciphertexts
+ * at several CKKS levels.
+ * Depends on: core/MultiLevelCiphertext.h and common/Assert.h.
+ */
+
 #include "core/MultiLevelCiphertext.h"
 
 #include "common/Assert.h"
